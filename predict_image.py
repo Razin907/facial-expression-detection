@@ -101,11 +101,23 @@ def predict_image(image_path,
         print(f"  Ekspresi: {expression.upper()}")
         print(f"  Confidence: {confidence*100:.2f}%")
         
+        # Warning jika confidence rendah
+        if confidence < 0.6:
+            print(f"  ⚠️  Low confidence - hasil mungkin tidak akurat")
+            print(f"  💡 Tips: Gunakan lighting lebih baik atau ekspresi lebih jelas")
+        
         # Gambar hasil
         color = colors.get(expression, (255, 255, 255))
-        cv2.rectangle(result_image, (x, y), (x+w, y+h), color, 2)
         
+        # Tentukan ketebalan border berdasarkan confidence
+        thickness = 3 if confidence > 0.7 else (2 if confidence > 0.5 else 1)
+        cv2.rectangle(result_image, (x, y), (x+w, y+h), color, thickness)
+        
+        # Tambahkan tanda tanya jika confidence rendah
         text = f"{expression.upper()}: {confidence*100:.1f}%"
+        if confidence < 0.6:
+            text += " (?)"
+        
         (text_width, text_height), baseline = cv2.getTextSize(
             text, cv2.FONT_HERSHEY_SIMPLEX, 0.6, 2
         )

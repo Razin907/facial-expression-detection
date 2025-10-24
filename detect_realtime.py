@@ -113,11 +113,19 @@ class ExpressionDetector:
         # Pilih warna berdasarkan ekspresi
         color = self.colors.get(expression, (255, 255, 255))
         
-        # Gambar kotak di sekitar wajah
-        cv2.rectangle(frame, (x, y), (x+w, y+h), color, 2)
+        # Tentukan ketebalan border berdasarkan confidence
+        # High confidence (>70%) = thick border, Low confidence (<50%) = thin border
+        thickness = 3 if confidence > 0.7 else (2 if confidence > 0.5 else 1)
         
-        # Siapkan teks
+        # Gambar kotak di sekitar wajah
+        cv2.rectangle(frame, (x, y), (x+w, y+h), color, thickness)
+        
+        # Siapkan teks dengan confidence score
         text = f"{expression.upper()}: {confidence*100:.1f}%"
+        
+        # Tambahkan warning jika confidence rendah
+        if confidence < 0.6:
+            text += " (?)"  # Tanda tanya untuk low confidence
         
         # Ukuran dan posisi background untuk teks
         (text_width, text_height), baseline = cv2.getTextSize(

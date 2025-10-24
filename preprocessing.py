@@ -86,6 +86,10 @@ def preprocess_face_for_prediction(face_image, target_size=(48, 48)):
     else:
         face_gray = face_image
     
+    # ✨ Histogram Equalization untuk meningkatkan kontras dan akurasi
+    # Ini sangat membantu di kondisi lighting yang kurang optimal
+    face_gray = cv2.equalizeHist(face_gray)
+    
     # Resize ke ukuran target
     face_resized = cv2.resize(face_gray, target_size)
     
@@ -116,15 +120,15 @@ def load_haarcascade():
     return face_cascade
 
 
-def detect_faces(image, face_cascade, scale_factor=1.1, min_neighbors=5):
+def detect_faces(image, face_cascade, scale_factor=1.05, min_neighbors=4):
     """
     Mendeteksi wajah dalam gambar menggunakan Haar Cascade
     
     Args:
         image: Gambar input
         face_cascade: Haar Cascade classifier
-        scale_factor: Parameter untuk deteksi multi-scale
-        min_neighbors: Minimum tetangga untuk deteksi
+        scale_factor: Parameter untuk deteksi multi-scale (default: 1.05 - lebih sensitif)
+        min_neighbors: Minimum tetangga untuk deteksi (default: 4 - lebih permisif)
         
     Returns:
         List koordinat wajah [(x, y, w, h), ...]
