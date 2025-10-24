@@ -5,7 +5,11 @@ Script untuk pra-pemrosesan data dan augmentasi
 import os
 import cv2
 import numpy as np
-from tensorflow.keras.preprocessing.image import ImageDataGenerator
+import tensorflow as tf
+
+# ImageDataGenerator masih tersedia di tf.keras.preprocessing.image
+# Meskipun deprecated warning muncul, fungsinya masih bekerja normal
+ImageDataGenerator = tf.keras.preprocessing.image.ImageDataGenerator
 
 
 def create_data_generators(train_dir, validation_dir, target_size=(48, 48), 
