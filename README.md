@@ -59,8 +59,6 @@ python detect_realtime.py
 python predict_image.py path\to\your\image.jpg
 ```
 
-**Itu saja! Tidak perlu training, model sudah siap pakai!** 🎉
-
 ## 🎮 Cara Penggunaan
 
 ### Deteksi Real-time (Webcam)
