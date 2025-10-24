@@ -48,9 +48,3 @@ logs/
 # Temporary files
 *.tmp
 *.bak
-
-# file markdown yang tidak perlu diupload
-GITHUB_UPLOAD.md
-CONTRIBUTING.md
-KAGGLE_GUIDE.md
-
