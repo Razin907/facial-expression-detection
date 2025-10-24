@@ -1,0 +1,57 @@
+# Virtual Environment
+venv/
+env/
+ENV/
+.venv
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Dataset (gambar besar, jangan push ke GitHub)
+dataset/train/
+dataset/validation/
+*.zip
+*.tar.gz
+*.rar
+
+# Model files (file besar)
+models/*.h5
+models/*.hdf5
+models/*.keras
+
+# Training outputs
+*.png
+*.csv
+*.json
+!requirements.txt
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+logs/
+*.log
+
+# Temporary files
+*.tmp
+*.bak
+
+# file markdown yang tidak perlu diupload
+GITHUB_UPLOAD.md
+CONTRIBUTING.md
+KAGGLE_GUIDE.md
+
