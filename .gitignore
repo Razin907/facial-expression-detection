@@ -22,6 +22,7 @@ dataset/validation/
 *.rar
 
 # Model files (file besar)
+!models/expression_model.h5
 models/*.h5
 models/*.hdf5
 models/*.keras
@@ -29,7 +30,7 @@ models/*.keras
 # Training outputs
 *.png
 *.csv
-*.json
+!class_labels.json
 !requirements.txt
 
 # IDE
